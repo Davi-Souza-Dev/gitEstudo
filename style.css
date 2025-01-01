@@ -1,66 +1,171 @@
-/* From Uiverse.io by lukepadiachy */ 
-.my-loader {
-    width: 200px;
-    height: 200px;
-    perspective: 1000px;
-    margin: 100px auto;
-  }
-  
-  .rubiks-cube {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform-style: preserve-3d;
-    animation: my-rotateCube 5s infinite linear;
-  }
-  
-  .my-loader .face {
-    position: absolute;
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .my-loader .face.front {
-    transform: translateZ(100px);
-  }
-  .my-loader .face.back {
-    transform: rotateY(180deg) translateZ(100px);
-  }
-  .my-loader .face.left {
-    transform: rotateY(-90deg) translateZ(100px);
-  }
-  .my-loader .face.right {
-    transform: rotateY(90deg) translateZ(100px);
-  }
-  .my-loader .face.top {
-    transform: rotateX(90deg) translateZ(100px);
-  }
-  .my-loader .face.bottom {
-    transform: rotateX(-90deg) translateZ(100px);
-  }
-  
-  .my-loader .cube {
-    width: calc(100% / 3);
-    height: calc(100% / 3);
-    box-sizing: border-box;
-    border: 1px solid #000;
-  }
-  
-  @keyframes my-rotateCube {
-    0% {
-      transform: rotateX(0deg) rotateY(0deg);
-    }
-    100% {
-      transform: rotateX(360deg) rotateY(360deg);
-    }
-  }
-  
+*{
+  border: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-  #btnHide{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
+html,body{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.my-loader {
+  width: 200px;
+  height: 200px;
+  perspective: 1000px;
+  margin: 100px auto;
+  z-index: 100;
+}
+
+.rubiks-cube {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: my-rotateCube 5s infinite linear;
+}
+
+.my-loader .face {
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+}
+
+.my-loader .face.front {
+  transform: translateZ(100px);
+}
+.my-loader .face.back {
+  transform: rotateY(180deg) translateZ(100px);
+}
+.my-loader .face.left {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+.my-loader .face.right {
+  transform: rotateY(90deg) translateZ(100px);
+}
+.my-loader .face.top {
+  transform: rotateX(90deg) translateZ(100px);
+}
+.my-loader .face.bottom {
+  transform: rotateX(-90deg) translateZ(100px);
+}
+
+.my-loader .cube {
+  width: calc(100% / 3);
+  height: calc(100% / 3);
+  box-sizing: border-box;
+  border: 1px solid #000;
+}
+
+@keyframes my-rotateCube {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
   }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+#btnHide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100px;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  backdrop-filter: hue-rotate(90deg);
+  mask: linear-gradient(45deg, #0000, #000);
+  animation: rotaty 5s linear infinite;
+  transform-origin: center;
+}
+
+.container {
+  position: absolute;
+  background-image: radial-gradient(
+    circle at 50% 50%,
+    #0000 0,
+    #0000 2px,
+    hsl(0 0 4%) 2px
+  );
+  background-size: 8px 8px;
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes thingy {
+  0% {
+    filter: var(--f) hue-rotate(0deg);
+  }
+  to {
+    filter: var(--f) hue-rotate(1turn);
+  }
+}
+
+.container::before {
+  content: "";
+  position: absolute;
+  inset: -8em;
+  z-index: -1;
+  --f: blur(7em) brightness(5);
+  --c: #09f;
+  animation:
+    blobs-1e28bd3d 150s linear infinite,
+    thingy 5s linear infinite;
+  background-color: #000;
+  background-image: radial-gradient(
+      ellipse 66px 50px at 50% 50%,
+      #0f0 0%,
+      transparent 100%
+    ),
+    radial-gradient(ellipse 77px 60px at 50% 50%, #0f0 0%, transparent 100%),
+    radial-gradient(ellipse 78px 100px at 50% 50%, #0f0 0%, transparent 100%),
+    radial-gradient(ellipse 73px 96px at 50% 50%, #0f0 0%, transparent 100%),
+    radial-gradient(ellipse 76px 77px at 50% 50%, #0f0 0%, transparent 100%),
+    radial-gradient(ellipse 66px 51px at 50% 50%, #0f0 0%, transparent 100%),
+    radial-gradient(ellipse 90px 57px at 50% 50%, #0f0 0%, transparent 100%),
+    radial-gradient(ellipse 89px 93px at 50% 50%, #0f0 0%, transparent 100%);
+  background-size:
+    726px 576px,
+    1242px 454px,
+    876px 1160px,
+    691px 873px,
+    914px 550px,
+    1159px 340px,
+    1017px 831px,
+    313px 977px;
+}
+
+@keyframes blobs-1e28bd3d {
+  0% {
+    background-position:
+      271px 478px,
+      62px 291px,
+      67px 861px,
+      553px 413px,
+      36px 392px,
+      1077px 226px,
+      400px 799px,
+      7px 264px;
+  }
+
+  to {
+    background-position:
+      -14975px -2978px,
+      31112px 11187px,
+      -20081px 8981px,
+      11609px -3952px,
+      -12760px 12492px,
+      -9354px 2946px,
+      9553px 21574px,
+      946px 9057px;
+  }
+}
